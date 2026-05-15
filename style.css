@@ -1421,6 +1421,182 @@
             box-shadow: 0 12px 32px rgba(0, 0, 0, .5)
         }
 
+        /* ===== LGPD COOKIE BANNER ===== */
+#cookieBanner{
+  position:fixed;bottom:0;left:0;right:0;z-index:8000;
+  background:var(--bg1);border-top:1px solid var(--bdr);
+  padding:1.5rem 3rem;
+  transform:translateY(100%);transition:transform .45s cubic-bezier(.16,1,.3,1);
+  box-shadow:0 -8px 40px rgba(0,0,0,.5)
+}
+#cookieBanner.show{transform:translateY(0)}
+.ck-top{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.ck-title{font-family:var(--ff);font-size:.92rem;font-weight:700;color:var(--t1);margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
+.ck-desc{font-size:.8rem;color:var(--t2);line-height:1.7;max-width:700px}
+.ck-desc a{color:var(--g);text-decoration:underline}
+.ck-cats{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.1rem;padding:1rem 1.25rem;background:rgba(39,39,42,.5);border-radius:10px;border:1px solid var(--bdr)}
+.ck-cat{display:flex;align-items:center;gap:.55rem;font-size:.78rem}
+.ck-cat input[type=checkbox]{width:15px;height:15px;accent-color:var(--g);cursor:none;flex-shrink:0}
+.ck-cat label{color:var(--t2);cursor:none;display:flex;flex-direction:column;gap:.05rem}
+.ck-cat label strong{color:var(--t1);font-size:.78rem;font-weight:600}
+.ck-cat label span{font-size:.68rem;color:var(--t2)}
+.ck-cat-lock{font-size:.72rem;color:var(--g);font-family:var(--fm);background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);padding:.1rem .5rem;border-radius:4px;margin-left:.3rem}
+.ck-btns{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+.ck-accept{padding:.55rem 1.35rem;background:var(--g);color:var(--bg0);border:none;border-radius:7px;font-family:var(--fb);font-size:.82rem;font-weight:700;cursor:none;transition:all .2s}
+.ck-accept:hover{background:var(--gg);box-shadow:0 0 18px rgba(16,185,129,.3)}
+.ck-save{padding:.55rem 1.35rem;background:transparent;color:var(--t1);border:1px solid var(--bdr);border-radius:7px;font-family:var(--fb);font-size:.82rem;font-weight:500;cursor:none;transition:all .2s}
+.ck-save:hover{border-color:var(--g);color:var(--g)}
+.ck-deny{padding:.55rem 1.35rem;background:transparent;color:var(--t2);border:none;font-family:var(--fb);font-size:.78rem;cursor:none;transition:color .2s;text-decoration:underline}
+.ck-deny:hover{color:var(--t1)}
+@media(max-width:768px){#cookieBanner{padding:1.2rem 1.5rem}.ck-cats{flex-direction:column;gap:.75rem}}
+
+/* ===== LGPD PRIVACY MODAL ===== */
+#privModal{
+  position:fixed;inset:0;z-index:9500;
+  background:rgba(10,10,11,.88);
+  backdrop-filter:blur(12px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:2rem
+}
+
+#privModal.open{
+    display:flex
+}
+
+.pm-box{
+  background:var(--bg1);
+  border:1px solid var(--bdr);
+  border-radius:20px;
+  max-width:720px;
+  width:100%;
+  max-height:82vh;
+  display:flex;
+  flex-direction:column;
+  box-shadow:0 32px 80px rgba(0,0,0,.6)
+}
+
+.pm-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1.5rem 2rem;
+  border-bottom:1px solid var(--bdr);
+  flex-shrink:0
+}
+
+.pm-head h2{
+    font-family:var(--ff);
+    font-size:1.2rem;
+    font-weight:800;
+    letter-spacing:-.02em
+}
+
+.pm-head span{
+    font-family:var(--fm);
+    font-size:.68rem;
+    color:var(--g);
+    background:rgba(16,185,129,.1);
+    border:1px solid rgba(16,185,129,.2);
+    padding:.2rem .6rem;
+    border-radius:4px
+}
+
+.pm-close{
+    background:none;
+    border:none;
+    cursor:none;color:var(--t2);
+    font-size:1.4rem;
+    line-height:1;
+    transition:color .2s;
+    padding:2px
+}
+
+.pm-close:hover{
+    color:var(--t1)
+}
+
+.pm-body{
+    padding:1.75rem 2rem;
+    overflow-y:auto;
+    font-size:.86rem;
+    color:var(--t2);
+    line-height:1.85
+}
+
+.pm-body h3{
+    font-family:var(--ff);
+    font-size:.95rem;
+    font-weight:700;
+    color:var(--t1);
+    margin:1.5rem 0 .6rem;
+    letter-spacing:-.01em
+}
+
+.pm-body h3:first-child{
+    margin-top:0
+}
+
+.pm-body p{
+    margin-bottom:.85rem
+}
+
+.pm-body ul{
+    padding-left:1.25rem;
+    margin-bottom:.85rem
+}
+
+.pm-body ul li{
+    margin-bottom:.35rem
+}
+
+.pm-body a{
+    color:var(--g);
+    text-decoration:underline
+}
+
+.pm-body strong{
+    color:var(--t1);
+    font-weight:600
+}
+
+.pm-foot{
+    padding:1.25rem 2rem;
+    border-top:1px solid var(--bdr);
+    flex-shrink:0;
+    display:flex;
+    justify-content:flex-end
+}
+
+/* ===== FORM LGPD CHECKBOX ===== */
+.lgpd-check{
+    display:flex;
+    align-items:flex-start;
+    gap:.65rem;
+    cursor:none
+}
+
+.lgpd-check input[type=checkbox]{
+  width:16px;
+  height:16px;
+  flex-shrink:0;
+  margin-top:2px;
+  accent-color:var(--g);
+  cursor:none
+}
+.lgpd-check label{
+    font-size:.78rem;
+    color:var(--t2);
+    line-height:1.6;
+    cursor:none
+}
+
+.lgpd-check label a{
+    color:var(--g);
+    text-decoration:underline
+}
+
         /* RESPONSIVE */
         @media(max-width:960px) {
 

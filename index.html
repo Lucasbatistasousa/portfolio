@@ -471,6 +471,11 @@
                             <label class="flbl" for="fm">Mensagem</label>
                             <textarea class="ftx" id="fm" name="message" placeholder="Me conta mais sobre o seu projeto..." required></textarea>
                         </div>
+                        <div class="fg">
+                            <div class="lgpd-check">
+                            <input type="checkbox" id="lgpd" required/>
+                            <label for="lgpd">Li e aceito a <a href="#" onclick="openPriv(event)">Política de Privacidade</a>. Autorizo o uso dos meus dados para resposta de contato e comunicações sobre projetos, conforme a <strong>LGPD (Lei nº 13.709/2018)</strong>.</label>
+                        </div>
                         <button type="submit" class="btng"
                             style="cursor:none;border:none;width:100%;justify-content:center">Enviar Mensagem →</button>
                     </form>
@@ -484,6 +489,138 @@
         <div class="flnks"><a href="#sobre">Sobre</a><a href="#projetos">Projetos</a><a href="#contato">Contato</a><a
                 href="https://github.com/lucasbatistasousa" target="_blank">GitHub</a></div>
     </footer>
+
+    <!-- ===== COOKIE BANNER LGPD ===== -->
+    <div id="cookieBanner">
+    <div class="ck-top">
+        <div>
+        <div class="ck-title">🍪 Gerenciar preferências de cookies</div>
+        <p class="ck-desc">Usamos cookies para melhorar sua experiência, analisar o tráfego e exibir anúncios personalizados. Você pode escolher quais categorias aceitar. Saiba mais na nossa <a href="#" onclick="openPriv(event)">Política de Privacidade</a>, conforme a <strong style="color:var(--t1)">LGPD — Lei nº 13.709/2018</strong>.</p>
+        </div>
+    </div>
+    <div class="ck-cats">
+        <div class="ck-cat">
+        <input type="checkbox" id="ck_essential" checked disabled/>
+        <label for="ck_essential">
+            <strong>Essenciais <span class="ck-cat-lock">Sempre ativo</span></strong>
+            <span>Necessários para o funcionamento do site</span>
+        </label>
+        </div>
+        <div class="ck-cat">
+        <input type="checkbox" id="ck_analytics"/>
+        <label for="ck_analytics">
+            <strong>Analíticos — Google Analytics</strong>
+            <span>Métricas de visitas, comportamento e tráfego</span>
+        </label>
+        </div>
+        <div class="ck-cat">
+        <input type="checkbox" id="ck_marketing"/>
+        <label for="ck_marketing">
+            <strong>Marketing — Facebook Pixel</strong>
+            <span>Anúncios personalizados e remarketing</span>
+        </label>
+        </div>
+    </div>
+    <div class="ck-btns">
+        <button class="ck-accept" onclick="acceptAllCookies()">Aceitar todos ✓</button>
+        <button class="ck-save" onclick="saveCustomCookies()">Salvar preferências</button>
+        <button class="ck-deny" onclick="denyAllCookies()">Recusar opcionais</button>
+    </div>
+    </div>
+
+    <!-- ===== PRIVACY POLICY MODAL ===== -->
+    <div id="privModal" onclick="closePrivOnBg(event)">
+    <div class="pm-box">
+        <div class="pm-head">
+        <h2>🔒 Política de Privacidade</h2>
+        <span>LGPD — Lei 13.709/2018</span>
+        <button class="pm-close" onclick="closePriv()" aria-label="Fechar">✕</button>
+        </div>
+        <div class="pm-body">
+
+        <h3>1. Quem somos (Controlador)</h3>
+        <p><strong>Lucas Batista Sousa</strong>, desenvolvedor Front-End independente, é o controlador dos dados pessoais coletados neste site. Contato para assuntos de privacidade: <a href="mailto:lucasbatistasousa@gmail.com">lucasbatistasousa@gmail.com</a> — assunto "Privacidade / LGPD".</p>
+
+        <h3>2. Quais dados coletamos</h3>
+        <p><strong>Dados fornecidos diretamente por você (formulário de contato):</strong></p>
+        <ul>
+            <li>Nome completo</li>
+            <li>Endereço de e-mail</li>
+            <li>Número de telefone</li>
+            <li>Mensagem enviada</li>
+        </ul>
+        <p><strong>Dados coletados automaticamente (com seu consentimento):</strong></p>
+        <ul>
+            <li>Endereço IP (anonimizado)</li>
+            <li>Tipo de navegador e dispositivo</li>
+            <li>Páginas visitadas e tempo de permanência</li>
+            <li>Origem do tráfego (ex: Google, Instagram, direto)</li>
+            <li>Eventos de interação (cliques, scroll, conversões)</li>
+            <li>Identificadores de cookies de publicidade (Facebook Pixel ID, Google Client ID)</li>
+        </ul>
+
+        <h3>3. Finalidades e base legal</h3>
+        <p>Tratamos seus dados para as seguintes finalidades, com as respectivas bases legais da LGPD:</p>
+        <ul>
+            <li><strong>Responder à sua mensagem</strong> — execução de contrato / legítimo interesse (Art. 7º, V e IX)</li>
+            <li><strong>Análise de tráfego e performance do site</strong> via Google Analytics — consentimento (Art. 7º, I). Você pode recusar no banner de cookies.</li>
+            <li><strong>Marketing digital e remarketing</strong> via Facebook Pixel / Meta Ads — consentimento (Art. 7º, I). Usado para exibir anúncios personalizados e campanhas de tráfego pago. Você pode recusar no banner de cookies.</li>
+            <li><strong>Melhoria contínua do site</strong> com base em dados agregados e anônimos — legítimo interesse (Art. 7º, IX)</li>
+        </ul>
+
+        <h3>4. Compartilhamento com terceiros</h3>
+        <p>Seus dados podem ser compartilhados com os seguintes fornecedores de tecnologia, exclusivamente para as finalidades descritas acima:</p>
+        <ul>
+            <li><strong>Google LLC</strong> (Google Analytics 4) — análise de tráfego. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidade do Google</a></li>
+            <li><strong>Meta Platforms Inc.</strong> (Facebook Pixel) — marketing e remarketing. <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener">Política de Privacidade da Meta</a></li>
+        </ul>
+        <p><strong>Seus dados nunca serão vendidos a terceiros.</strong> O compartilhamento acima ocorre apenas por necessidade técnica e operacional das ferramentas utilizadas.</p>
+
+        <h3>5. Transferência internacional</h3>
+        <p>O Google e a Meta possuem servidores nos EUA e em outros países. A transferência internacional ocorre com garantias adequadas de proteção, conforme o Art. 33 da LGPD (cláusulas contratuais padrão e certificações internacionais).</p>
+
+        <h3>6. Por quanto tempo guardamos</h3>
+        <ul>
+            <li><strong>Dados do formulário:</strong> enquanto necessário para atender sua solicitação + até 12 meses</li>
+            <li><strong>Dados do Google Analytics:</strong> retenção configurada para 14 meses no GA4</li>
+            <li><strong>Dados do Facebook Pixel:</strong> conforme a política de retenção da Meta (até 180 dias por padrão)</li>
+        </ul>
+
+        <h3>7. Seus direitos (Art. 18 da LGPD)</h3>
+        <p>Como titular dos dados, você tem direito a:</p>
+        <ul>
+            <li>Confirmar a existência de tratamento dos seus dados</li>
+            <li>Acessar os dados que temos sobre você</li>
+            <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
+            <li>Solicitar a anonimização, bloqueio ou eliminação de dados desnecessários</li>
+            <li>Portabilidade dos seus dados a outro fornecedor</li>
+            <li><strong>Revogar o consentimento a qualquer momento</strong> — pelo banner de cookies ou por e-mail</li>
+            <li>Apresentar reclamação à <strong>ANPD</strong> (Autoridade Nacional de Proteção de Dados)</li>
+        </ul>
+        <p>Para exercer qualquer direito, envie e-mail para <a href="mailto:lucasbatistasousa@gmail.com">lucasbatistasousa@gmail.com</a> com o assunto <strong>"Direitos LGPD"</strong>. Responderemos em até <strong>15 dias úteis</strong>.</p>
+
+        <h3>8. Gerenciamento de cookies</h3>
+        <p>Você pode gerenciar suas preferências a qualquer momento:</p>
+        <ul>
+            <li>Pelo banner de cookies exibido ao acessar o site</li>
+            <li>Nas configurações do seu navegador (bloqueio de cookies)</li>
+            <li>Pelo <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">complemento de opt-out do Google Analytics</a></li>
+            <li>Pelas <a href="https://www.facebook.com/adpreferences/" target="_blank" rel="noopener">preferências de anúncios da Meta</a></li>
+        </ul>
+        <p>Recusar cookies de marketing não afeta o funcionamento do site, mas os anúncios exibidos para você serão menos relevantes.</p>
+
+        <h3>9. Segurança</h3>
+        <p>Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados contra acesso não autorizado, perda ou destruição, incluindo transmissão via HTTPS e acesso restrito aos dados coletados.</p>
+
+        <h3>10. Alterações nesta política</h3>
+        <p>Esta política pode ser atualizada para refletir mudanças nas práticas de tratamento de dados ou exigências legais. Notificaremos alterações relevantes por aviso no site. A versão em vigor é sempre a disponível nesta página.</p>
+        <p style="font-family:var(--fm);font-size:.72rem;color:var(--g);margin-bottom:0">Última atualização: Janeiro de 2025 &nbsp;·&nbsp; Versão 2.0</p>
+        </div>
+        <div class="pm-foot">
+        <button class="btng" onclick="closePriv()" style="cursor:none;border:none">Entendido ✓</button>
+        </div>
+    </div>
+    </div>
 
     <div id="toast">✅ Mensagem enviada! Retornarei em breve.</div>
 

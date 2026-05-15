@@ -141,3 +141,105 @@ document.querySelectorAll('a[href^="#"]').forEach((a) =>
             ?.scrollIntoView({ behavior: "smooth" });
     }),
 );
+
+
+// ================================================================
+// LGPD — Gestão de Consentimento de Cookies
+// ================================================================
+
+// ── 1. Carregar preferências salvas
+function getConsent(){
+  try{ return JSON.parse(localStorage.getItem('lgpdConsent'))||null }
+  catch(e){ return null }
+}
+function saveConsent(prefs){
+  localStorage.setItem('lgpdConsent', JSON.stringify({...prefs, ts: Date.now()}));
+}
+
+// ── 2. Ativar Google Analytics 4 (substitua G-XXXXXXXXXX pelo seu ID real)
+function loadGA(){
+  if(document.getElementById('ga-script')) return;
+  const s=document.createElement('script');
+  s.id='ga-script';s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments)}
+  window.gtag=gtag;
+  gtag('js',new Date());
+  gtag('config','G-XXXXXXXXXX',{anonymize_ip:true});
+  console.info('[LGPD] Google Analytics ativado com consentimento.');
+}
+
+// ── 3. Ativar Facebook Pixel (substitua 000000000000000 pelo seu Pixel ID real)
+function loadPixel(){
+  if(window.fbq) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','000000000000000');
+  fbq('track','PageView');
+  console.info('[LGPD] Facebook Pixel ativado com consentimento.');
+}
+
+// ── 4. Aplicar preferências de cookies
+function applyConsent(prefs){
+  if(prefs.analytics) loadGA();
+  if(prefs.marketing) loadPixel();
+}
+
+// ── 5. Ações dos botões do banner
+function acceptAllCookies(){
+  const prefs={essential:true,analytics:true,marketing:true};
+  saveConsent(prefs);
+  applyConsent(prefs);
+  hideBanner();
+}
+function denyAllCookies(){
+  const prefs={essential:true,analytics:false,marketing:false};
+  saveConsent(prefs);
+  hideBanner();
+}
+function saveCustomCookies(){
+  const prefs={
+    essential:true,
+    analytics:document.getElementById('ck_analytics')?.checked||false,
+    marketing:document.getElementById('ck_marketing')?.checked||false
+  };
+  saveConsent(prefs);
+  applyConsent(prefs);
+  hideBanner();
+}
+function hideBanner(){
+  const b=document.getElementById('cookieBanner');
+  b.style.transform='translateY(100%)';
+  setTimeout(()=>b.style.display='none',460);
+}
+
+// ── 6. Exibir banner ou aplicar prefs salvas
+function initConsent(){
+  const saved=getConsent();
+  if(saved){
+    // Já consentiu antes — aplica silenciosamente
+    applyConsent(saved);
+  } else {
+    // Primeira visita — exibe banner após 1.2s
+    setTimeout(()=>document.getElementById('cookieBanner').classList.add('show'), 1200);
+  }
+}
+
+// ── 7. Modal de Política de Privacidade
+function openPriv(e){
+  if(e)e.preventDefault();
+  document.getElementById('privModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePriv(){
+  document.getElementById('privModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closePrivOnBg(e){
+  if(e.target===document.getElementById('privModal')) closePriv();
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closePriv(); });
+
+// ── 8. Inicializar
+initConsent();
