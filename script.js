@@ -198,16 +198,7 @@ function denyAllCookies(){
   saveConsent(prefs);
   hideBanner();
 }
-function saveCustomCookies(){
-  const prefs={
-    essential:true,
-    analytics:document.getElementById('ck_analytics')?.checked||false,
-    marketing:document.getElementById('ck_marketing')?.checked||false
-  };
-  saveConsent(prefs);
-  applyConsent(prefs);
-  hideBanner();
-}
+
 function hideBanner(){
   const b=document.getElementById('cookieBanner');
   b.style.transform='translateY(100%)';
